@@ -27,11 +27,14 @@ public class CategoryController {
 		return new ResponseEntity<CategoryDto>(createCategory, HttpStatus.CREATED);
 	}
 
-	// update
+	
+	// This Method to handle PUT requests for updating a category
 	@PutMapping("/{catId}")
-	public ResponseEntity<CategoryDto> updateCategory(@RequestBody CategoryDto categoryId,
-			@PathVariable Integer catId) {
-		CategoryDto updatedCategory = this.categoryService.updateCategory(categoryId, catId);
+	public ResponseEntity<CategoryDto> updateCategory(@RequestBody CategoryDto categoryDto,// The category data to update
+			@PathVariable Integer catId) { //The ID of the category to update
+		// Call the service to update the category and get the updated category
+		CategoryDto updatedCategory = this.categoryService.updateCategory(categoryDto, catId);
+		// Return the updated category with HTTP status 200 (OK)
 		return new ResponseEntity<CategoryDto>(updatedCategory, HttpStatus.OK);
 
 	}
